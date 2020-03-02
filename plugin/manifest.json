@@ -1,0 +1,6 @@
+{ "name": "export-for-native",
+  "api": "1.0.0",
+  "main": "code.js",
+  "id": "816238010631540569",
+  "ui": "ui.html"
+}
