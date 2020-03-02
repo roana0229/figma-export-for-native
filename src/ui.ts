@@ -38,29 +38,37 @@ const exportTypeToFileExtension = (type: string) => {
 }
 
 window.onmessage = async (event: any) => {
-  const { exportableBytes } = event.data.pluginMessage
+  const { exportAssets } = event.data.pluginMessage
 
-  return new Promise(resolve => {
+  await new Promise(resolve => {
     let zip = new JSZip()
 
-    for (let data of exportableBytes) {
+    exportAssets.forEach((data: any) => {
       const { bytes, name, setting } = data
       const cleanBytes = typedArrayToBuffer(bytes)
-      const type = exportTypeToBlobType(setting.format)
-      const extension = exportTypeToFileExtension(setting.format)
+      const type = exportTypeToBlobType(setting.fileSetting.format)
+      const extension = exportTypeToFileExtension(setting.fileSetting.format)
       let blob = new Blob([cleanBytes], { type })
-      zip.file(`${name}${setting.suffix}${extension}`, blob, { base64: true })
-    }
+      zip.file(
+        `${setting.dir}/${name}${setting.fileSetting.suffix}${extension}`,
+        blob,
+        {
+          base64: true,
+        },
+      )
+    })
 
     zip.generateAsync({ type: 'blob' }).then((content: Blob) => {
       const blobURL = window.URL.createObjectURL(content)
       const link = document.createElement('a')
       link.href = blobURL
-      link.download = 'figma-export-for-native.zip'
+      const { name } = exportAssets[0]
+      link.download = `${name}.zip`
       link.click()
-      resolve()
+      setTimeout(() => {
+        resolve()
+      }, 600)
     })
-  }).then(() => {
-    window.parent.postMessage({ pluginMessage: 'Ready for download.' }, '*')
   })
+  window.parent.postMessage({ pluginMessage: 'Ready for download.' }, '*')
 }
