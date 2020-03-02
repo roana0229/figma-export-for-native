@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "watch": "tsc-watch --onSuccess \"figplug build -O -o=plugin\"",
+    "watch": "tsc-watch --onSuccess \"yarn build\"",
+    "build": "figplug build -clean -O -o=plugin",
     "format": "prettier --write 'src/*.ts'"
   },
   "dependencies": {
