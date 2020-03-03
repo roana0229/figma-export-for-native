@@ -17,7 +17,7 @@ type ExportSetting = {
 
 const exportSettings: ExportSetting[] = [
   {
-    dir: 'iOS/pdf/',
+    dir: 'pdf/',
     command: ['ios_pdf', 'ios_all'],
     fileSetting: {
       format: 'PDF',
@@ -26,7 +26,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png/',
+    dir: 'png/',
     command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
@@ -36,7 +36,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png/',
+    dir: 'png/',
     command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
@@ -46,7 +46,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png/',
+    dir: 'png/',
     command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
@@ -56,7 +56,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg/',
+    dir: 'jpg/',
     command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
@@ -66,7 +66,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg/',
+    dir: 'jpg/',
     command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
@@ -76,7 +76,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg/',
+    dir: 'jpg/',
     command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
@@ -86,7 +86,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/svg/',
+    dir: 'svg/',
     command: ['android_svg', 'android_all'],
     fileSetting: {
       format: 'SVG',
@@ -95,7 +95,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-mdpi/',
+    dir: 'png/drawable-mdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -105,7 +105,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-hdpi/',
+    dir: 'png/drawable-hdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -115,7 +115,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xdpi/',
+    dir: 'png/drawable-xdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -125,7 +125,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xxdpi/',
+    dir: 'png/drawable-xxdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -135,7 +135,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xxxdpi/',
+    dir: 'png/drawable-xxxdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -145,7 +145,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-mdpi/',
+    dir: 'jpg/drawable-mdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -155,7 +155,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-hdpi/',
+    dir: 'jpg/drawable-hdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -165,7 +165,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xdpi/',
+    dir: 'jpg/drawable-xdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -175,7 +175,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xxdpi/',
+    dir: 'jpg/drawable-xxdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -185,7 +185,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xxxdpi/',
+    dir: 'jpg/drawable-xxxdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -212,7 +212,7 @@ const main = async (command: string) => {
         }),
     )
 
-    figma.ui.postMessage({ exportAssets })
+    figma.ui.postMessage({ command, exportAssets })
   } else {
     figma.closePlugin('Need to select a layer.')
   }

@@ -38,10 +38,12 @@ const exportTypeToFileExtension = (type: string) => {
 }
 
 window.onmessage = async (event: any) => {
-  const { exportAssets } = event.data.pluginMessage
+  const { command, exportAssets } = event.data.pluginMessage
 
   await new Promise(resolve => {
     let zip = new JSZip()
+
+    const isAllExports = command.includes('all')
 
     exportAssets.forEach((data: any) => {
       const { bytes, name, setting } = data
@@ -49,13 +51,13 @@ window.onmessage = async (event: any) => {
       const type = exportTypeToBlobType(setting.fileSetting.format)
       const extension = exportTypeToFileExtension(setting.fileSetting.format)
       let blob = new Blob([cleanBytes], { type })
-      zip.file(
-        `${setting.dir}${name}${setting.fileSetting.suffix}${extension}`,
-        blob,
-        {
-          base64: true,
-        },
-      )
+      let dir = setting.dir
+      if (!isAllExports) {
+        dir = setting.dir.replace(/(png|jpg|pdf|svg)/, '')
+      }
+      zip.file(`${dir}${name}${setting.fileSetting.suffix}${extension}`, blob, {
+        base64: true,
+      })
     })
 
     zip.generateAsync({ type: 'blob' }).then((content: Blob) => {
@@ -63,7 +65,7 @@ window.onmessage = async (event: any) => {
       const link = document.createElement('a')
       link.href = blobURL
       const { name } = exportAssets[0]
-      link.download = `${name}.zip`
+      link.download = `${name}-${command.replace('_', '-')}.zip`
       link.click()
       setTimeout(() => {
         resolve()

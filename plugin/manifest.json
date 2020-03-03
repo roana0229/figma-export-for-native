@@ -9,15 +9,15 @@
     "command": "android_all"
   },
   {
-    "name": "export as .png",
+    "name": "export as png",
     "command": "android_png"
   },
   {
-    "name": "export as .jpg",
+    "name": "export as jpg",
     "command": "android_jpg"
   },
   {
-    "name": "export as .svg",
+    "name": "export as svg",
     "command": "android_svg"
   },
   {
@@ -28,15 +28,15 @@
     "command": "ios_all"
   },
   {
-    "name": "export as .png",
+    "name": "export as png",
     "command": "ios_png"
   },
   {
-    "name": "export as .jpg",
+    "name": "export as jpg",
     "command": "ios_jpg"
   },
   {
-    "name": "export as .pdf",
+    "name": "export as pdf",
     "command": "ios_pdf"
   }
 ]
