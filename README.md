@@ -1,22 +1,29 @@
-This plugin template uses Typescript. If you are familiar with Javascript, Typescript will
-look very familiar. In fact, valid Javascript code is already valid Typescript code.
+# Export Image for Native (Figma plugin)
 
-Typescript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+Easily Export images of `png/jpg/pdf/svg` format for Android/iOS.
 
-For more information, visit https://www.typescriptlang.org/
+Android  
+If you use macos, you can join file with `opiton + drag and drop`.  
+![Android_demo](https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/android_demo.gif)
 
-Using Typescript requires a compiler to convert Typescript (code.ts) into Javascript (code.js)
-for the browser to run.
+iOS  
+![iOS_demo](https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/ios_demo.gif)
 
-To get the TypeScript compiler working:
+## Development
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Install the TypeScript compiler globally: `sudo npm install -g typescript`.
-3. Open this directory in Visual Studio Code.
-4. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "tsc: watch - tsconfig.json". You will have to do this again every time
-    you reopen Visual Studio Code.
+1. `yarn install`
+2. `yarn watch`
+3. load `plugin/manifest.json` on figma
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+Welcome to contribute !
+
+## Reference
+
+- [brianlovin/figma-export-zip](https://github.com/brianlovin/figma-export-zip)
+- [Ashung/android-resources-export-figma](https://github.com/Ashung/android-resources-export-figma)
+
+## LICENSE
+
+see `LICENSE` file.
+
+Copyright (c) 2020 Kaoru Tsutsumishita roana.enter@gmail.com
