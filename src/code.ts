@@ -115,7 +115,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'png/drawable-xdpi/',
+    dir: 'png/drawable-xhdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -125,7 +125,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'png/drawable-xxdpi/',
+    dir: 'png/drawable-xxhdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -135,7 +135,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'png/drawable-xxxdpi/',
+    dir: 'png/drawable-xxxhdpi/',
     command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
@@ -165,7 +165,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'jpg/drawable-xdpi/',
+    dir: 'jpg/drawable-xhdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -175,7 +175,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'jpg/drawable-xxdpi/',
+    dir: 'jpg/drawable-xxhdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
@@ -185,7 +185,7 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'jpg/drawable-xxxdpi/',
+    dir: 'jpg/drawable-xxxhdpi/',
     command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',

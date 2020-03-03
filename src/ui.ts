@@ -37,6 +37,67 @@ const exportTypeToFileExtension = (type: string) => {
   }
 }
 
+const contentsJson = (name: string, extension: string): string => {
+  if (extension === '.pdf') {
+    return JSON.stringify(
+      {
+        images: [
+          {
+            idiom: 'universal',
+            filename: `${name}.pdf`,
+            scale: '1x',
+          },
+          {
+            idiom: 'universal',
+            scale: '2x',
+          },
+          {
+            idiom: 'universal',
+            scale: '3x',
+          },
+        ],
+        info: {
+          version: 1,
+          author: 'xcode',
+        },
+        properties: {
+          'preserves-vector-representation': true,
+        },
+      },
+      null,
+      2,
+    )
+  } else {
+    return JSON.stringify(
+      {
+        images: [
+          {
+            idiom: 'universal',
+            filename: `${name}${extension}`,
+            scale: '1x',
+          },
+          {
+            idiom: 'universal',
+            filename: `${name}@2x${extension}`,
+            scale: '2x',
+          },
+          {
+            idiom: 'universal',
+            filename: `${name}@3x${extension}`,
+            scale: '3x',
+          },
+        ],
+        info: {
+          version: 1,
+          author: 'xcode',
+        },
+      },
+      null,
+      2,
+    )
+  }
+}
+
 window.onmessage = async (event: any) => {
   const { command, exportAssets } = event.data.pluginMessage
 
@@ -44,6 +105,9 @@ window.onmessage = async (event: any) => {
     let zip = new JSZip()
 
     const isAllExports = command.includes('all')
+    const isIOS = command.includes('ios')
+    const { name } = exportAssets[0]
+    const root = `${name}-${command.replace('_', '-')}`
 
     exportAssets.forEach((data: any) => {
       const { bytes, name, setting } = data
@@ -53,19 +117,26 @@ window.onmessage = async (event: any) => {
       let blob = new Blob([cleanBytes], { type })
       let dir = setting.dir
       if (!isAllExports) {
-        dir = setting.dir.replace(/(png|jpg|pdf|svg)/, '')
+        dir = dir.replace(/(png|jpg|pdf|svg)\//, '')
       }
-      zip.file(`${dir}${name}${setting.fileSetting.suffix}${extension}`, blob, {
-        base64: true,
-      })
+      if (isIOS) {
+        dir = `${dir}${name}.imageset/`
+        zip.file(`${root}/${dir}Contents.json`, contentsJson(name, extension))
+      }
+      zip.file(
+        `${root}/${dir}${name}${setting.fileSetting.suffix}${extension}`,
+        blob,
+        {
+          base64: true,
+        },
+      )
     })
 
     zip.generateAsync({ type: 'blob' }).then((content: Blob) => {
       const blobURL = window.URL.createObjectURL(content)
       const link = document.createElement('a')
       link.href = blobURL
-      const { name } = exportAssets[0]
-      link.download = `${name}-${command.replace('_', '-')}.zip`
+      link.download = `${root}.zip`
       link.click()
       setTimeout(() => {
         resolve()
