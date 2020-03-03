@@ -1,8 +1,6 @@
 # Export Image for Native (Figma plugin)
 
-Easily Export images of `png/jpg/pdf/svg` format for Android/iOS.
-
-<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/cover.gif" />
+<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/cover.png" />
 
 #### Android
 
