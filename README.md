@@ -2,12 +2,12 @@
 
 Easily Export images of `png/jpg/pdf/svg` format for Android/iOS.
 
-Android  
+#### Android
 If you use macos, you can join file with `opiton + drag and drop`.  
-![Android_demo](https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/android_demo.gif)
+<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/android_demo.gif" width=640 />
 
-iOS  
-![iOS_demo](https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/ios_demo.gif)
+#### iOS  
+<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/ios_demo.gif" width=640 />
 
 ## Development
 
