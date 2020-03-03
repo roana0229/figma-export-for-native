@@ -1,6 +1,43 @@
-{ "name": "export-for-native",
+{ "name": "Export Image for Native",
   "api": "1.0.0",
   "main": "code.js",
   "id": "816238010631540569",
-  "ui": "ui.html"
+  "ui": "ui.html",
+  "menu": [
+  {
+    "name": "Android export as all",
+    "command": "android_all"
+  },
+  {
+    "name": "export as .png",
+    "command": "android_png"
+  },
+  {
+    "name": "export as .jpg",
+    "command": "android_jpg"
+  },
+  {
+    "name": "export as .svg",
+    "command": "android_svg"
+  },
+  {
+    "separator": true
+  },
+  {
+    "name": "iOS export as all",
+    "command": "ios_all"
+  },
+  {
+    "name": "export as .png",
+    "command": "ios_png"
+  },
+  {
+    "name": "export as .jpg",
+    "command": "ios_jpg"
+  },
+  {
+    "name": "export as .pdf",
+    "command": "ios_pdf"
+  }
+]
 }

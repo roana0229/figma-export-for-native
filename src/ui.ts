@@ -50,7 +50,7 @@ window.onmessage = async (event: any) => {
       const extension = exportTypeToFileExtension(setting.fileSetting.format)
       let blob = new Blob([cleanBytes], { type })
       zip.file(
-        `${setting.dir}/${name}${setting.fileSetting.suffix}${extension}`,
+        `${setting.dir}${name}${setting.fileSetting.suffix}${extension}`,
         blob,
         {
           base64: true,

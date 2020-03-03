@@ -1,8 +1,3 @@
-type Art = {
-  node: SceneNode
-  data: Uint8Array
-}
-
 type ExportFileSettings =
   | ExportSettingsImage
   | ExportSettingsPDF
@@ -16,12 +11,14 @@ type Asset = {
 
 type ExportSetting = {
   dir: string
+  command: string[]
   fileSetting: ExportFileSettings
 }
 
 const exportSettings: ExportSetting[] = [
   {
-    dir: 'iOS/pdf',
+    dir: 'iOS/pdf/',
+    command: ['ios_pdf', 'ios_all'],
     fileSetting: {
       format: 'PDF',
       suffix: '',
@@ -29,7 +26,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png',
+    dir: 'iOS/png/',
+    command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -38,7 +36,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png',
+    dir: 'iOS/png/',
+    command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '@2x',
@@ -47,7 +46,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/png',
+    dir: 'iOS/png/',
+    command: ['ios_png', 'ios_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '@3x',
@@ -56,7 +56,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg',
+    dir: 'iOS/jpg/',
+    command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -65,7 +66,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg',
+    dir: 'iOS/jpg/',
+    command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '@2x',
@@ -74,7 +76,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'iOS/jpg',
+    dir: 'iOS/jpg/',
+    command: ['ios_jpg', 'ios_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '@3x',
@@ -83,7 +86,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/svg',
+    dir: 'Android/svg/',
+    command: ['android_svg', 'android_all'],
     fileSetting: {
       format: 'SVG',
       suffix: '',
@@ -91,7 +95,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-mdpi',
+    dir: 'Android/png/drawable-mdpi/',
+    command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -100,7 +105,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-hdpi',
+    dir: 'Android/png/drawable-hdpi/',
+    command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -109,7 +115,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xdpi',
+    dir: 'Android/png/drawable-xdpi/',
+    command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -118,7 +125,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xxdpi',
+    dir: 'Android/png/drawable-xxdpi/',
+    command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -127,7 +135,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/png/drawable-xxxdpi',
+    dir: 'Android/png/drawable-xxxdpi/',
+    command: ['android_png', 'android_all'],
     fileSetting: {
       format: 'PNG',
       suffix: '',
@@ -136,7 +145,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-mdpi',
+    dir: 'Android/jpg/drawable-mdpi/',
+    command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -145,7 +155,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-hdpi',
+    dir: 'Android/jpg/drawable-hdpi/',
+    command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -154,7 +165,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xdpi',
+    dir: 'Android/jpg/drawable-xdpi/',
+    command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -163,7 +175,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xxdpi',
+    dir: 'Android/jpg/drawable-xxdpi/',
+    command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -172,7 +185,8 @@ const exportSettings: ExportSetting[] = [
     },
   },
   {
-    dir: 'Android/jpg/drawable-xxxdpi',
+    dir: 'Android/jpg/drawable-xxxdpi/',
+    command: ['android_jpg', 'android_all'],
     fileSetting: {
       format: 'JPG',
       suffix: '',
@@ -182,18 +196,20 @@ const exportSettings: ExportSetting[] = [
   },
 ]
 
-const main = async () => {
+const main = async (command: string) => {
   if (figma.currentPage.selection && figma.currentPage.selection.length > 0) {
     figma.showUI(__html__, { visible: false })
     const selected = figma.currentPage.selection[0]
     const exportAssets: Asset[] = await Promise.all(
-      exportSettings.map(async setting => {
-        return {
-          name: selected.name,
-          setting: setting,
-          bytes: await selected.exportAsync(setting.fileSetting),
-        }
-      }),
+      exportSettings
+        .filter(setting => setting.command.includes(command))
+        .map(async setting => {
+          return {
+            name: selected.name,
+            setting: setting,
+            bytes: await selected.exportAsync(setting.fileSetting),
+          }
+        }),
     )
 
     figma.ui.postMessage({ exportAssets })
@@ -202,7 +218,7 @@ const main = async () => {
   }
 }
 
-main()
+main(figma.command)
 figma.ui.onmessage = msg => {
   figma.closePlugin(msg)
 }
