@@ -1,6 +1,8 @@
+<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/cover.png" />
+
 # Export Image for Native (Figma plugin)
 
-<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/cover.png" />
+Figma plugin. Easily Export images of png/jpg/pdf/svg format for Android/iOS.
 
 #### Android
 
@@ -10,6 +12,14 @@ If you use macos, you can join file with `opiton + drag and drop`.
 #### iOS
 
 <img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/ios_demo.gif" width=640 />
+
+## Planned Features
+
+- [x] Export as png
+- [x] Export as jpg
+- [x] Export as pdf only iOS
+- [x] Export as svg only Android
+- [ ] Export with input name
 
 ## Development
 
