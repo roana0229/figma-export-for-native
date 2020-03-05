@@ -204,9 +204,15 @@ const main = async (command: string) => {
       exportSettings
         .filter(setting => setting.command.includes(command))
         .map(async setting => {
+          const name =
+            selected.name
+              .replace(/\s/g, '')
+              .split('/')
+              .pop()
+              ?.toString() || 'noname'
           return {
-            name: selected.name,
-            setting: setting,
+            name,
+            setting,
             bytes: await selected.exportAsync(setting.fileSetting),
           }
         }),
