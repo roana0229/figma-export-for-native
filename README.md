@@ -4,13 +4,24 @@
 
 Figma plugin. Easily Export images of png/jpg/pdf/svg format for Android/iOS.
 
-#### Android
+### How to use
 
+1. Select layer.
+2. `Plugins > Export image for Native > Android or iOS > select extension`
+
+<img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/menu.png" />
+
+#### How to use exported images for Android
+
+Only drag and drop on finder.  
 If you use macos, you can join file with `opiton + drag and drop`.  
-(Right finder pannel is export zip from this plugin.). 
+
+(Right finder pannel is export zip from this plugin.)
 <img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/android_demo.gif" width=640 />
 
-#### iOS
+#### How to use exported images for iOS
+
+Only drag and drop to Xcode.  
 
 (Right finder pannel is export zip from this plugin.). 
 <img src="https://raw.githubusercontent.com/roana0229/figma-export-for-native/master/demo/ios_demo.gif" width=640 />
