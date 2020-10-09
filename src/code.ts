@@ -199,22 +199,24 @@ const exportSettings: ExportSetting[] = [
 const main = async (command: string) => {
   if (figma.currentPage.selection && figma.currentPage.selection.length > 0) {
     figma.showUI(__html__, { visible: false })
-    const selected = figma.currentPage.selection[0]
+    const selected = figma.currentPage.selection
     const exportAssets: Asset[] = await Promise.all(
       exportSettings
         .filter(setting => setting.command.includes(command))
-        .map(async setting => {
-          const name =
-            selected.name
-              .replace(/\s/g, '')
-              .split('/')
-              .pop()
-              ?.toString() || 'noname'
-          return {
-            name,
-            setting,
-            bytes: await selected.exportAsync(setting.fileSetting),
-          }
+        .flatMap(setting => {
+          return selected.map(async item => {
+            const name =
+              item.name
+                .replace(/\s/g, '')
+                .split('/')
+                .pop()
+                ?.toString() || 'noname'
+            return {
+              name,
+              setting,
+              bytes: await item.exportAsync(setting.fileSetting),
+            }
+          })
         }),
     )
 
