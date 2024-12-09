@@ -2,6 +2,9 @@
 
 # Export Image for Native (Figma plugin)
 
+***No further development, Issue, PullRequest or maintenance will be performed.***  
+***Please use within the scope of the license.***
+
 Figma plugin. Easily Export images of png/jpg/pdf/svg format for Android/iOS.
 
 ### How to use
